@@ -1,0 +1,17 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+cache: packages
+
+before_install:
+  - R -e "install.packages('reticulate')"
+  - R -e "reticulate::py_install('nltk')"
+  - R -e "reticulate::py_install('numpy')"
+
+env:
+ global:
+   - CRAN: http://cran.rstudio.com
+
+notifications:
+  email:
+    on_failure: change
